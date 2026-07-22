@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zaproszenie 💖</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#ffd9ec;overflow:hidden;display:flex;align-items:center;justify-content:center;height:100vh}
+.card{background:#fff;border-radius:24px;padding:28px;max-width:420px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.15);position:relative;z-index:2}
+button{padding:12px 20px;border:none;border-radius:999px;margin:8px;font-size:18px;cursor:pointer}
+#yes{background:#ff69b4;color:#fff}#no{background:#eee}
+.hidden{display:none}
+.heart{position:fixed;top:-20px;color:#ff69b4;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh)}}
+.envelope{font-size:70px;cursor:pointer}
+</style></head>
+<body>
+<div class="card">
+<div id="cover">
+<div class="envelope">💌</div>
+<h2>Kliknij kopertę, aby otworzyć zaproszenie 🎀</h2>
+</div>
+<div id="main" class="hidden">
+<h2>🩷 Zaproszenie na obiad 🩷</h2>
+<p><b>Czy masz ochotę zjeść naleśniki z borówkami dziś w moim domu? 🥞🫐</b></p>
+<button id="yes">💖 Tak!</button>
+<button id="no">🤍 Nie</button>
+</div>
+<div id="time" class="hidden">
+<h2>Yay! 💕</h2><p>Wybierz godzinę:</p>
+<select id="sel">
+<option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>Inna 😊</option>
+</select><br><br>
+<button onclick="finish()">Gotowe 🩷</button>
+</div>
+<div id="end" class="hidden">
+<h2>🥞 Do zobaczenia! 💖</h2>
+<p id="msg"></p>
+<button onclick="share()">Wyślij odpowiedź 💌</button>
+</div>
+</div>
+<script>
+for(let i=0;i<30;i++){let h=document.createElement('div');h.className='heart';h.textContent='💖';h.style.left=Math.random()*100+'vw';h.style.animationDuration=(5+Math.random()*6)+'s';h.style.animationDelay=(-Math.random()*10)+'s';document.body.appendChild(h);}
+document.querySelector('.envelope').onclick=()=>{cover.classList.add('hidden');main.classList.remove('hidden');}
+no.onmouseover=()=>{no.style.position='absolute';no.style.left=Math.random()*250+'px';no.style.top=Math.random()*220+'px';}
+yes.onclick=()=>{main.classList.add('hidden');time.classList.remove('hidden');}
+function finish(){time.classList.add('hidden');end.classList.remove('hidden');msg.textContent='Naleśniki będą czekały na Ciebie o '+sel.value+'! 🫐💕';}
+function share(){const t=encodeURIComponent("Wybrałem godzinę: "+sel.value+" 🥞❤️");location.href="sms:?&body="+t;}
+</script></body></html>
